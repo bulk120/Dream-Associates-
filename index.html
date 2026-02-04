@@ -303,6 +303,33 @@
             resize: vertical;
         }
         
+        /* Address Section */
+        .address-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--accent);
+        }
+        
+        .address-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .address-card h3 i {
+            color: var(--accent);
+        }
+        
+        .address-details {
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+        
         /* Footer */
         footer {
             background-color: var(--dark);
@@ -368,6 +395,13 @@
             color: var(--accent);
         }
         
+        .footer-address {
+            margin-top: 15px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.8);
+        }
+        
         .copyright {
             text-align: center;
             padding-top: 30px;
@@ -376,20 +410,32 @@
             font-size: 0.9rem;
         }
         
-        /* Page Content */
+        /* Legal Pages Styles */
+        .legal-page {
+            display: none;
+        }
+        
+        .legal-page.active {
+            display: block;
+        }
+        
         .page-header {
             background-color: var(--light);
             padding: 140px 0 60px;
             text-align: center;
         }
         
+        .page-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+        
         .page-content {
             padding: 80px 0;
         }
         
-        .policy-content,
-        .terms-content {
-            max-width: 900px;
+        .policy-content, .terms-content {
+            max-width: 1000px;
             margin: 0 auto;
             background: white;
             padding: 50px;
@@ -397,38 +443,45 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
         
-        .policy-content h3,
-        .terms-content h3 {
-            margin-top: 30px;
-            color: var(--primary);
-            font-size: 1.5rem;
-            padding-bottom: 10px;
+        .legal-page h2 {
+            text-align: left;
+            margin-top: 40px;
+            font-size: 1.8rem;
             border-bottom: 2px solid var(--light);
+            padding-bottom: 10px;
         }
         
-        .policy-content ul,
-        .terms-content ul {
+        .legal-page h2:after {
+            display: none;
+        }
+        
+        .legal-page h3 {
+            margin-top: 25px;
+            color: var(--primary);
+            font-size: 1.4rem;
+        }
+        
+        .legal-page ul {
             padding-left: 20px;
             margin-bottom: 20px;
         }
         
-        .policy-content ul li,
-        .terms-content ul li {
+        .legal-page ul li {
             margin-bottom: 10px;
             color: var(--text-light);
         }
         
-        .back-btn {
-            margin-top: 40px;
-            text-align: center;
-        }
-        
         .highlight-box {
             background-color: var(--light);
-            padding: 20px;
+            padding: 25px;
             border-left: 4px solid var(--accent);
-            margin: 25px 0;
+            margin: 30px 0;
             border-radius: 0 4px 4px 0;
+        }
+        
+        .back-btn {
+            margin-top: 50px;
+            text-align: center;
         }
         
         /* Responsive Styles */
@@ -449,8 +502,7 @@
                 order: -1;
             }
             
-            .policy-content,
-            .terms-content {
+            .policy-content, .terms-content {
                 padding: 30px;
             }
         }
@@ -489,6 +541,14 @@
             .hero h1 {
                 font-size: 2.5rem;
             }
+            
+            .page-header {
+                padding: 120px 0 40px;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
         }
         
         @media (max-width: 576px) {
@@ -504,9 +564,16 @@
                 font-size: 1.8rem;
             }
             
-            .policy-content,
-            .terms-content {
+            .page-content {
+                padding: 50px 0;
+            }
+            
+            .policy-content, .terms-content {
                 padding: 20px;
+            }
+            
+            .page-header h1 {
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -528,18 +595,19 @@
             
             <nav>
                 <ul id="mainNav">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="index.html#about">About Us</a></li>
-                    <li><a href="index.html#services">Services</a></li>
-                    <li><a href="index.html#contact">Contact</a></li>
-                    <li><a href="#privacy-policy">Privacy Policy</a></li>
-                    <li><a href="#terms">Terms</a></li>
+                    <li><a href="#" onclick="showHomePage()">Home</a></li>
+                    <li><a href="#" onclick="showHomePage(); scrollToSection('about')">About Us</a></li>
+                    <li><a href="#" onclick="showHomePage(); scrollToSection('services')">Services</a></li>
+                    <li><a href="#" onclick="showHomePage(); scrollToSection('contact')">Contact</a></li>
+                    <li><a href="#" onclick="showPrivacyPolicy()">Privacy Policy</a></li>
+                    <li><a href="#" onclick="showTermsConditions()">Terms & Conditions</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main>
+    <!-- Main Website Content -->
+    <main id="mainContent">
         <!-- Hero Section -->
         <section class="hero" id="home">
             <div class="container">
@@ -635,22 +703,23 @@
                         
                         <div class="contact-item">
                             <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h3>Visit Us</h3>
+                                <p>69 Duraiappa Complex<br>Gobichettipalayam<br>Tamil Nadu 638452</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
                                 <i class="fas fa-clock"></i>
                             </div>
                             <div>
                                 <h3>Business Hours</h3>
                                 <p>Monday - Friday: 9:00 AM - 7:00 PM</p>
                                 <p>Saturday: 10:00 AM - 4:00 PM</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-comments"></i>
-                            </div>
-                            <div>
-                                <h3>Consultation</h3>
-                                <p>Free initial consultation for all new clients. Schedule yours today!</p>
+                                <p>Sunday: Closed</p>
                             </div>
                         </div>
                     </div>
@@ -673,216 +742,305 @@
                         </form>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- Privacy Policy Page -->
-        <section id="privacy-policy" style="display: none;">
-            <div class="page-header">
-                <div class="container">
-                    <h1>Privacy Policy</h1>
-                    <p>Last Updated: <span id="currentDate"></span></p>
-                </div>
-            </div>
-            
-            <div class="page-content">
-                <div class="container">
-                    <div class="policy-content">
-                        <p>Dream Associates ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.</p>
-                        
-                        <div class="highlight-box">
-                            <p><strong>Note:</strong> By using our website or services, you consent to the data practices described in this policy. If you do not agree with the terms of this policy, please do not access the site or use our services.</p>
-                        </div>
-                        
-                        <h3>1. Information We Collect</h3>
-                        <p>We collect several types of information from and about users of our website, including:</p>
-                        <ul>
-                            <li><strong>Personal Data:</strong> Personally identifiable information, such as your name, email address, telephone number, and any other information you voluntarily provide when you contact us or use our services.</li>
-                            <li><strong>Financial Information:</strong> Information relevant to our consulting services, which may include income details, financial goals, and insurance needs.</li>
-                            <li><strong>Health Information:</strong> When relevant to insurance and coverage planning, we may collect health-related information necessary for providing appropriate recommendations.</li>
-                            <li><strong>Usage Data:</strong> Information about how you access and use our website, including your IP address, browser type, operating system, pages viewed, and the dates/times of your visits.</li>
-                            <li><strong>Cookies and Tracking Technologies:</strong> We may use cookies, web beacons, and similar tracking technologies to collect information about your browsing activities.</li>
-                        </ul>
-                        
-                        <h3>2. How We Use Your Information</h3>
-                        <p>We use the information we collect for various purposes, including to:</p>
-                        <ul>
-                            <li>Provide, maintain, and improve our services</li>
-                            <li>Respond to your inquiries and provide customer support</li>
-                            <li>Send you administrative information, updates, and service-related communications</li>
-                            <li>Personalize your experience and deliver content relevant to your interests</li>
-                            <li>Monitor and analyze usage patterns and trends</li>
-                            <li>Protect against, identify, and prevent fraud and other illegal activities</li>
-                            <li>Comply with legal obligations and enforce our terms and conditions</li>
-                        </ul>
-                        
-                        <h3>3. Disclosure of Your Information</h3>
-                        <p>We may share your information in the following situations:</p>
-                        <ul>
-                            <li><strong>With Service Providers:</strong> We may share your information with third-party vendors who perform services on our behalf, such as payment processing, data analysis, email delivery, and hosting services.</li>
-                            <li><strong>For Legal Reasons:</strong> We may disclose your information if required to do so by law or in response to valid requests by public authorities.</li>
-                            <li><strong>Business Transfers:</strong> If we are involved in a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction.</li>
-                            <li><strong>With Your Consent:</strong> We may disclose your personal information for any other purpose with your explicit consent.</li>
-                        </ul>
-                        
-                        <h3>4. Data Security</h3>
-                        <p>We implement appropriate technical and organizational security measures designed to protect the security of your personal information. However, please be aware that no security measures are perfect or impenetrable, and we cannot guarantee the absolute security of your data.</p>
-                        
-                        <h3>5. Data Retention</h3>
-                        <p>We will retain your personal information only for as long as is necessary for the purposes set out in this Privacy Policy, or as required to comply with our legal obligations, resolve disputes, and enforce our agreements.</p>
-                        
-                        <h3>6. Your Data Protection Rights</h3>
-                        <p>Depending on your location, you may have the following rights regarding your personal information:</p>
-                        <ul>
-                            <li><strong>Access:</strong> The right to request copies of your personal data.</li>
-                            <li><strong>Rectification:</strong> The right to request correction of inaccurate information.</li>
-                            <li><strong>Erasure:</strong> The right to request deletion of your personal data under certain conditions.</li>
-                            <li><strong>Restriction:</strong> The right to request restriction of processing your personal data.</li>
-                            <li><strong>Objection:</strong> The right to object to our processing of your personal data.</li>
-                            <li><strong>Data Portability:</strong> The right to request transfer of your data to another organization.</li>
-                        </ul>
-                        <p>To exercise these rights, please contact us using the information provided below.</p>
-                        
-                        <h3>7. Third-Party Websites</h3>
-                        <p>Our website may contain links to third-party websites. This Privacy Policy does not apply to those websites, and we are not responsible for their content or privacy practices. We encourage you to review the privacy policies of any third-party sites you visit.</p>
-                        
-                        <h3>8. Children's Privacy</h3>
-                        <p>Our services are not directed to individuals under the age of 18. We do not knowingly collect personal information from children. If you are a parent or guardian and believe your child has provided us with personal information, please contact us immediately.</p>
-                        
-                        <h3>9. Changes to This Privacy Policy</h3>
-                        <p>We may update this Privacy Policy from time to time. The updated version will be indicated by an updated "Last Updated" date at the top of this page. We encourage you to review this Privacy Policy periodically to stay informed about how we are protecting your information.</p>
-                        
-                        <h3>10. Contact Us</h3>
-                        <p>If you have questions or concerns about this Privacy Policy or our data practices, please contact us at:</p>
-                        <p><strong>Dream Associates</strong><br>
-                        Email: dreamassociates84@gmail.com<br>
-                        Phone: +91 74188 51898<br>
-                        Address: Life, Health and Education Consultant</p>
-                        
-                        <div class="back-btn">
-                            <a href="index.html" class="btn">Back to Home</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Terms and Conditions Page -->
-        <section id="terms" style="display: none;">
-            <div class="page-header">
-                <div class="container">
-                    <h1>Terms and Conditions</h1>
-                    <p>Last Updated: <span id="currentDate2"></span></p>
-                </div>
-            </div>
-            
-            <div class="page-content">
-                <div class="container">
-                    <div class="terms-content">
-                        <p>Welcome to Dream Associates. These Terms and Conditions govern your use of our website and services. By accessing or using our website, you agree to be bound by these Terms and Conditions.</p>
-                        
-                        <div class="highlight-box">
-                            <p><strong>Important:</strong> Please read these Terms and Conditions carefully before using our website or services. If you do not agree to these terms, you must not access or use our website.</p>
-                        </div>
-                        
-                        <h3>1. Definitions</h3>
-                        <p>In these Terms and Conditions:</p>
-                        <ul>
-                            <li>"Company," "We," "Us," or "Our" refers to Dream Associates.</li>
-                            <li>"Client," "You," or "Your" refers to the individual accessing or using our services.</li>
-                            <li>"Services" refers to the life, health, and education consulting services we provide.</li>
-                            <li>"Website" refers to the Dream Associates website, accessible from [Your Website URL].</li>
-                        </ul>
-                        
-                        <h3>2. Services Description</h3>
-                        <p>Dream Associates provides professional consulting services in the areas of:</p>
-                        <ul>
-                            <li>Life insurance planning and advisory</li>
-                            <li>Health coverage consultation</li>
-                            <li>Education funding and planning</li>
-                            <li>Financial security and wealth protection strategies</li>
-                        </ul>
-                        <p>Our services are advisory in nature. We provide recommendations and guidance, but final decisions regarding insurance products, investments, or financial strategies are made by you, the client.</p>
-                        
-                        <h3>3. Client Responsibilities</h3>
-                        <p>By using our services, you agree to:</p>
-                        <ul>
-                            <li>Provide accurate, current, and complete information about yourself and your financial situation</li>
-                            <li>Update your information promptly if any changes occur</li>
-                            <li>Make timely decisions regarding the recommendations provided</li>
-                            <li>Pay for services as agreed in our service agreements</li>
-                            <li>Use our services only for lawful purposes</li>
-                            <li>Not provide false or misleading information</li>
-                        </ul>
-                        
-                        <h3>4. Fees and Payment</h3>
-                        <p>Our fee structure will be clearly explained during our initial consultation. Fees may be charged as:</p>
-                        <ul>
-                            <li><strong>Consultation Fees:</strong> Fixed fees for specific consulting services</li>
-                            <li><strong>Commission-Based Fees:</strong> Commissions received from product providers for policies purchased through our recommendations</li>
-                            <li><strong>Hybrid Model:</strong> Combination of consultation fees and commissions</li>
-                        </ul>
-                        <p>All fees and commissions will be fully disclosed to you before you engage our services.</p>
-                        
-                        <h3>5. Intellectual Property</h3>
-                        <p>The content, layout, design, data, databases, and graphics on this website are protected by intellectual property laws and are owned by Dream Associates unless otherwise stated. You may not reproduce, distribute, modify, or create derivative works of any material without our prior written consent.</p>
-                        
-                        <h3>6. Limitation of Liability</h3>
-                        <p>To the maximum extent permitted by law, Dream Associates shall not be liable for:</p>
-                        <ul>
-                            <li>Any indirect, incidental, special, consequential, or punitive damages</li>
-                            <li>Loss of profits, revenue, data, or use</li>
-                            <li>Damages related to unauthorized access to or alteration of your transmissions or data</li>
-                            <li>Any matters beyond our reasonable control</li>
-                        </ul>
-                        <p>Our total cumulative liability to you for all claims arising from or related to our services shall not exceed the total amount you paid us for the specific service giving rise to the claim.</p>
-                        
-                        <h3>7. Disclaimer of Warranties</h3>
-                        <p>Our services are provided "as is" and "as available" without warranties of any kind, either express or implied. We do not warrant that:</p>
-                        <ul>
-                            <li>Our services will meet your specific requirements</li>
-                            <li>Our services will be uninterrupted, timely, secure, or error-free</li>
-                            <li>The results that may be obtained from the use of our services will be accurate or reliable</li>
-                            <li>The quality of any products, services, information, or other material purchased or obtained through our services will meet your expectations</li>
-                        </ul>
-                        
-                        <h3>8. Confidentiality</h3>
-                        <p>We agree to maintain the confidentiality of all personal and financial information you provide, subject to the following exceptions:</p>
-                        <ul>
-                            <li>When required by law or regulatory authorities</li>
-                            <li>When necessary to provide our services (e.g., sharing with insurance providers)</li>
-                            <li>When you have given explicit consent to share specific information</li>
-                        </ul>
-                        
-                        <h3>9. Termination</h3>
-                        <p>We may terminate or suspend your access to our services immediately, without prior notice or liability, for any reason, including if you breach these Terms and Conditions. Upon termination, your right to use our services will immediately cease.</p>
-                        
-                        <h3>10. Indemnification</h3>
-                        <p>You agree to indemnify, defend, and hold harmless Dream Associates and its officers, directors, employees, and agents from and against any claims, liabilities, damages, losses, and expenses, including reasonable attorneys' fees, arising out of or in any way connected with your access to or use of our services or your violation of these Terms and Conditions.</p>
-                        
-                        <h3>11. Dispute Resolution</h3>
-                        <p>Any disputes arising from these Terms and Conditions or your use of our services shall be resolved through good faith negotiations between the parties. If negotiations fail, the dispute shall be submitted to binding arbitration in accordance with the laws of India.</p>
-                        
-                        <h3>12. Governing Law</h3>
-                        <p>These Terms and Conditions shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law provisions.</p>
-                        
-                        <h3>13. Changes to Terms</h3>
-                        <p>We reserve the right to modify these Terms and Conditions at any time. We will notify you of any changes by updating the "Last Updated" date at the top of this page. Your continued use of our website after any such changes constitutes your acceptance of the new Terms and Conditions.</p>
-                        
-                        <h3>14. Contact Information</h3>
-                        <p>If you have any questions about these Terms and Conditions, please contact us:</p>
-                        <p><strong>Dream Associates</strong><br>
-                        Email: dreamassociates84@gmail.com<br>
-                        Phone: +91 74188 51898</p>
-                        
-                        <div class="back-btn">
-                            <a href="index.html" class="btn">Back to Home</a>
-                        </div>
+                
+                <!-- Address Card -->
+                <div class="address-card">
+                    <h3><i class="fas fa-map-marker-alt"></i> Our Office Location</h3>
+                    <div class="address-details">
+                        <p><strong>Dream Associates</strong></p>
+                        <p>69 Duraiappa Complex</p>
+                        <p>Gobichettipalayam</p>
+                        <p>Tamil Nadu 638452</p>
+                        <p>India</p>
+                        <p style="margin-top: 15px;">
+                            <strong>Phone:</strong> <a href="tel:7418851898">+91 74188 51898</a><br>
+                            <strong>Email:</strong> <a href="mailto:dreamassociates84@gmail.com">dreamassociates84@gmail.com</a>
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
+
+    <!-- Privacy Policy Page (Hidden by default) -->
+    <div id="privacyPolicyPage" class="legal-page">
+        <section class="page-header">
+            <div class="container">
+                <h1>Privacy Policy</h1>
+                <p>Last Updated: <span id="currentDate"></span></p>
+                <p>This Privacy Policy describes how Dream Associates collects, uses, and protects your personal information.</p>
+            </div>
+        </section>
+        
+        <section class="page-content">
+            <div class="container">
+                <div class="policy-content">
+                    <div class="highlight-box">
+                        <p><strong>Important Notice:</strong> By using our website or services, you consent to the collection and use of your personal information as described in this Privacy Policy. If you do not agree with any part of this policy, please do not use our website or services.</p>
+                    </div>
+                    
+                    <h2>1. Information We Collect</h2>
+                    
+                    <h3>1.1 Personal Information</h3>
+                    <p>We collect personal information that you voluntarily provide to us when you:</p>
+                    <ul>
+                        <li>Contact us through our website, email, or phone</li>
+                        <li>Visit our office at 69 Duraiappa Complex, Gobichettipalayam</li>
+                        <li>Request a consultation or quote</li>
+                        <li>Subscribe to our newsletter or updates</li>
+                        <li>Apply for our services</li>
+                    </ul>
+                    <p>This information may include:</p>
+                    <ul>
+                        <li>Full name and contact details (email, phone number, address)</li>
+                        <li>Date of birth, gender, and marital status</li>
+                        <li>Financial information relevant to our services</li>
+                        <li>Health information for insurance-related services</li>
+                        <li>Employment and income details</li>
+                    </ul>
+                    
+                    <h3>1.2 Automatically Collected Information</h3>
+                    <p>When you visit our website, we automatically collect certain information including:</p>
+                    <ul>
+                        <li>IP address and device information</li>
+                        <li>Browser type and version</li>
+                        <li>Pages visited and time spent on pages</li>
+                        <li>Referring website addresses</li>
+                        <li>Cookies and similar tracking technologies</li>
+                    </ul>
+                    
+                    <h2>2. How We Use Your Information</h2>
+                    <p>We use the information we collect for the following purposes:</p>
+                    <ul>
+                        <li><strong>Service Provision:</strong> To provide our consulting services and respond to your inquiries</li>
+                        <li><strong>Communication:</strong> To communicate with you about our services, updates, and promotional offers</li>
+                        <li><strong>Improvement:</strong> To improve our website, services, and customer experience</li>
+                        <li><strong>Legal Compliance:</strong> To comply with legal obligations and regulatory requirements</li>
+                        <li><strong>Security:</strong> To protect against fraud and unauthorized access</li>
+                        <li><strong>Personalization:</strong> To personalize your experience and provide relevant recommendations</li>
+                    </ul>
+                    
+                    <h2>3. Information Sharing and Disclosure</h2>
+                    
+                    <h3>3.1 Third-Party Service Providers</h3>
+                    <p>We may share your information with trusted third-party service providers who assist us in operating our website and providing our services, including:</p>
+                    <ul>
+                        <li>Insurance companies and financial institutions</li>
+                        <li>IT service providers and hosting companies</li>
+                        <li>Marketing and communication platforms</li>
+                        <li>Payment processors (if applicable)</li>
+                    </ul>
+                    <p>These third parties are contractually obligated to protect your information and use it only for the purposes we specify.</p>
+                    
+                    <h3>3.2 Legal Requirements</h3>
+                    <p>We may disclose your information if required to do so by law or in response to valid requests by public authorities (e.g., a court or government agency).</p>
+                    
+                    <h3>3.3 Business Transfers</h3>
+                    <p>In the event of a merger, acquisition, or sale of all or a portion of our assets, your information may be transferred as part of that transaction.</p>
+                    
+                    <h2>4. Data Security</h2>
+                    <p>We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. These measures include:</p>
+                    <ul>
+                        <li>Secure server infrastructure with firewalls</li>
+                        <li>Encryption of sensitive data</li>
+                        <li>Regular security assessments and updates</li>
+                        <li>Limited access to personal information on a need-to-know basis</li>
+                        <li>Secure data storage and transmission protocols</li>
+                    </ul>
+                    <p>However, no method of transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security.</p>
+                    
+                    <h2>5. Data Retention</h2>
+                    <p>We retain your personal information only for as long as necessary to fulfill the purposes for which it was collected, including for the purposes of satisfying any legal, accounting, or reporting requirements. Typically, we retain client information for a minimum of 7 years after the termination of our relationship, as required by financial regulations.</p>
+                    
+                    <h2>6. Your Rights</h2>
+                    <p>Depending on your location, you may have the following rights regarding your personal information:</p>
+                    <ul>
+                        <li><strong>Right to Access:</strong> You can request copies of your personal information.</li>
+                        <li><strong>Right to Rectification:</strong> You can request that we correct any information you believe is inaccurate or complete information you believe is incomplete.</li>
+                        <li><strong>Right to Erasure:</strong> You can request that we erase your personal information, under certain conditions.</li>
+                        <li><strong>Right to Restrict Processing:</strong> You can request that we restrict the processing of your personal information, under certain conditions.</li>
+                        <li><strong>Right to Object to Processing:</strong> You can object to our processing of your personal information, under certain conditions.</li>
+                        <li><strong>Right to Data Portability:</strong> You can request that we transfer the data we have collected to another organization, or directly to you, under certain conditions.</li>
+                    </ul>
+                    <p>To exercise any of these rights, please contact us using the information provided in Section 9.</p>
+                    
+                    <h2>7. Cookies and Tracking Technologies</h2>
+                    <p>We use cookies and similar tracking technologies to track activity on our website and store certain information. Cookies are files with a small amount of data that may include an anonymous unique identifier.</p>
+                    <p>You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our website.</p>
+                    
+                    <h2>8. Third-Party Links</h2>
+                    <p>Our website may contain links to other websites that are not operated by us. If you click on a third-party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit.</p>
+                    <p>We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.</p>
+                    
+                    <h2>9. Children's Privacy</h2>
+                    <p>Our services are not intended for individuals under the age of 18 ("Children"). We do not knowingly collect personally identifiable information from children. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact us. If we become aware that we have collected personal information from children without verification of parental consent, we take steps to remove that information from our servers.</p>
+                    
+                    <h2>10. Changes to This Privacy Policy</h2>
+                    <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.</p>
+                    <p>You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>
+                    
+                    <h2>11. Contact Us</h2>
+                    <p>If you have any questions about this Privacy Policy, please contact us:</p>
+                    <p><strong>Dream Associates</strong><br>
+                    69 Duraiappa Complex<br>
+                    Gobichettipalayam<br>
+                    Tamil Nadu 638452<br>
+                    India<br>
+                    Email: dreamassociates84@gmail.com<br>
+                    Phone: +91 74188 51898<br>
+                    Business Hours: Monday-Friday 9:00 AM - 7:00 PM, Saturday 10:00 AM - 4:00 PM</p>
+                    
+                    <div class="back-btn">
+                        <a href="#" onclick="showHomePage()" class="btn">Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Terms & Conditions Page (Hidden by default) -->
+    <div id="termsPage" class="legal-page">
+        <section class="page-header">
+            <div class="container">
+                <h1>Terms & Conditions</h1>
+                <p>Last Updated: <span id="currentDate2"></span></p>
+                <p>Please read these Terms and Conditions carefully before using our website and services.</p>
+            </div>
+        </section>
+        
+        <section class="page-content">
+            <div class="container">
+                <div class="terms-content">
+                    <div class="highlight-box">
+                        <p><strong>Important:</strong> By accessing or using our website and services, you agree to be bound by these Terms and Conditions. If you disagree with any part of these terms, you may not access our website or use our services.</p>
+                    </div>
+                    
+                    <h2>1. Definitions</h2>
+                    <ul>
+                        <li><strong>"Company," "We," "Us," or "Our"</strong> refers to Dream Associates, located at 69 Duraiappa Complex, Gobichettipalayam, Tamil Nadu 638452.</li>
+                        <li><strong>"Client," "You," or "Your"</strong> refers to the individual accessing or using our services.</li>
+                        <li><strong>"Services"</strong> refers to the life, health, and education consulting services we provide.</li>
+                        <li><strong>"Website"</strong> refers to the Dream Associates website.</li>
+                        <li><strong>"Content"</strong> refers to text, images, audio, video, or any other information presented on our website.</li>
+                    </ul>
+                    
+                    <h2>2. Acceptance of Terms</h2>
+                    <p>By accessing and using our website, you accept and agree to be bound by these Terms and Conditions. If you do not agree to these terms, you must not use our website or services.</p>
+                    
+                    <h2>3. Services Description</h2>
+                    <p>Dream Associates provides professional consulting services in the following areas:</p>
+                    <ul>
+                        <li>Life insurance planning and advisory services</li>
+                        <li>Health insurance coverage consultation</li>
+                        <li>Education funding and planning strategies</li>
+                        <li>Financial security and wealth protection planning</li>
+                        <li>Retirement planning guidance</li>
+                    </ul>
+                    <p><strong>Important Disclaimer:</strong> Our services are advisory in nature. We provide recommendations and guidance based on our professional expertise, but we do not guarantee specific financial outcomes or insurance policy approvals. Final decisions regarding financial products, investments, or insurance policies are made by you, the client.</p>
+                    
+                    <h2>4. Client Responsibilities</h2>
+                    <p>By using our services, you agree to:</p>
+                    <ul>
+                        <li>Provide accurate, current, and complete information about yourself and your financial situation</li>
+                        <li>Update your information promptly if any changes occur</li>
+                        <li>Make timely decisions regarding the recommendations provided</li>
+                        <li>Pay for services as agreed in our service agreements</li>
+                        <li>Use our services only for lawful purposes</li>
+                        <li>Not provide false or misleading information</li>
+                        <li>Comply with all applicable laws and regulations</li>
+                    </ul>
+                    
+                    <h2>5. Fees and Payment</h2>
+                    <p>Our fee structure will be clearly explained during our initial consultation and detailed in our service agreement. Fees may be structured as:</p>
+                    <ul>
+                        <li><strong>Consultation Fees:</strong> Fixed fees for specific consulting services, payable in advance or as agreed</li>
+                        <li><strong>Commission-Based Fees:</strong> Commissions received from product providers for policies purchased through our recommendations (fully disclosed to you)</li>
+                        <li><strong>Hybrid Model:</strong> Combination of consultation fees and commissions</li>
+                    </ul>
+                    <p>All fees, charges, and commissions will be fully disclosed to you before you engage our services. You will receive a written service agreement outlining all financial arrangements.</p>
+                    
+                    <h2>6. Intellectual Property</h2>
+                    <p>The content, layout, design, data, databases, and graphics on this website are protected by Indian and international intellectual property laws and are owned by Dream Associates unless otherwise stated.</p>
+                    <p>You may not:</p>
+                    <ul>
+                        <li>Reproduce, duplicate, copy, or resell any part of our website without our express written permission</li>
+                        <li>Modify, adapt, or create derivative works of any material without our prior written consent</li>
+                        <li>Use any illustrations, photographs, video or audio sequences, or any graphics separately from accompanying text</li>
+                        <li>Remove any copyright or proprietary notices from our content</li>
+                    </ul>
+                    
+                    <h2>7. Limitation of Liability</h2>
+                    <p>To the maximum extent permitted by applicable law, Dream Associates shall not be liable for:</p>
+                    <ul>
+                        <li>Any indirect, incidental, special, consequential, or punitive damages</li>
+                        <li>Loss of profits, revenue, data, or use</li>
+                        <li>Damages related to unauthorized access to or alteration of your transmissions or data</li>
+                        <li>Any matters beyond our reasonable control</li>
+                        <li>Any losses resulting from market fluctuations, changes in regulations, or other external factors</li>
+                    </ul>
+                    <p>Our total cumulative liability to you for all claims arising from or related to our services shall not exceed the total amount you paid us for the specific service giving rise to the claim.</p>
+                    
+                    <h2>8. Disclaimer of Warranties</h2>
+                    <p>Our services are provided "as is" and "as available" without warranties of any kind, either express or implied. We do not warrant that:</p>
+                    <ul>
+                        <li>Our services will meet your specific requirements</li>
+                        <li>Our services will be uninterrupted, timely, secure, or error-free</li>
+                        <li>The results that may be obtained from the use of our services will be accurate or reliable</li>
+                        <li>The quality of any products, services, information, or other material purchased or obtained through our services will meet your expectations</li>
+                        <li>Any errors in our services will be corrected</li>
+                    </ul>
+                    
+                    <h2>9. Confidentiality</h2>
+                    <p>We agree to maintain the confidentiality of all personal and financial information you provide, subject to the following exceptions:</p>
+                    <ul>
+                        <li>When required by law or regulatory authorities</li>
+                        <li>When necessary to provide our services (e.g., sharing with insurance providers)</li>
+                        <li>When you have given explicit consent to share specific information</li>
+                        <li>To protect our rights, property, or safety, or that of others</li>
+                    </ul>
+                    
+                    <h2>10. Termination</h2>
+                    <p>We may terminate or suspend your access to our services immediately, without prior notice or liability, for any reason, including if you breach these Terms and Conditions.</p>
+                    <p>Upon termination, your right to use our services will immediately cease. All provisions of these Terms which by their nature should survive termination shall survive termination, including, without limitation, ownership provisions, warranty disclaimers, indemnity, and limitations of liability.</p>
+                    
+                    <h2>11. Indemnification</h2>
+                    <p>You agree to indemnify, defend, and hold harmless Dream Associates and its officers, directors, employees, and agents from and against any claims, liabilities, damages, losses, and expenses, including reasonable attorneys' fees, arising out of or in any way connected with:</p>
+                    <ul>
+                        <li>Your access to or use of our services</li>
+                        <li>Your violation of these Terms and Conditions</li>
+                        <li>Your violation of any rights of a third party</li>
+                        <li>Your violation of any applicable laws or regulations</li>
+                    </ul>
+                    
+                    <h2>12. Dispute Resolution</h2>
+                    <p>Any disputes arising from these Terms and Conditions or your use of our services shall be resolved through good faith negotiations between the parties. If negotiations fail, the dispute shall be submitted to binding arbitration in accordance with the Arbitration and Conciliation Act, 1996, as amended.</p>
+                    <p>The arbitration shall be conducted in English in Erode District, Tamil Nadu. The arbitrator's award shall be final and binding on both parties.</p>
+                    
+                    <h2>13. Governing Law</h2>
+                    <p>These Terms and Conditions shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law provisions.</p>
+                    
+                    <h2>14. Changes to Terms</h2>
+                    <p>We reserve the right to modify or replace these Terms and Conditions at any time. If a revision is material, we will provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.</p>
+                    <p>By continuing to access or use our website after those revisions become effective, you agree to be bound by the revised terms.</p>
+                    
+                    <h2>15. Contact Information</h2>
+                    <p>If you have any questions about these Terms and Conditions, please contact us:</p>
+                    <p><strong>Dream Associates</strong><br>
+                    69 Duraiappa Complex<br>
+                    Gobichettipalayam<br>
+                    Tamil Nadu 638452<br>
+                    India<br>
+                    Email: dreamassociates84@gmail.com<br>
+                    Phone: +91 74188 51898<br>
+                    Business Hours: Monday-Friday 9:00 AM - 7:00 PM, Saturday 10:00 AM - 4:00 PM</p>
+                    
+                    <div class="back-btn">
+                        <a href="#" onclick="showHomePage()" class="btn">Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -891,6 +1049,13 @@
                 <div class="footer-about">
                     <div class="footer-logo">Dream<span>Associates</span></div>
                     <p>Professional Life, Health, and Education Consulting firm dedicated to helping individuals and families plan a secure future.</p>
+                    <div class="footer-address">
+                        <p><strong>Office Address:</strong></p>
+                        <p>69 Duraiappa Complex<br>
+                        Gobichettipalayam<br>
+                        Tamil Nadu 638452<br>
+                        India</p>
+                    </div>
                     <div style="margin-top: 20px;">
                         <a href="mailto:dreamassociates84@gmail.com" style="color: var(--accent); text-decoration: none; font-weight: 600;">dreamassociates84@gmail.com</a><br>
                         <a href="tel:7418851898" style="color: var(--accent); text-decoration: none; font-weight: 600;">+91 74188 51898</a>
@@ -900,36 +1065,36 @@
                 <div class="footer-links">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html#about">About Us</a></li>
-                        <li><a href="index.html#services">Services</a></li>
-                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="#" onclick="showHomePage()">Home</a></li>
+                        <li><a href="#" onclick="showHomePage(); scrollToSection('about')">About Us</a></li>
+                        <li><a href="#" onclick="showHomePage(); scrollToSection('services')">Services</a></li>
+                        <li><a href="#" onclick="showHomePage(); scrollToSection('contact')">Contact</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-services">
                     <h3>Our Services</h3>
                     <ul>
-                        <li><a href="index.html#services">Life Insurance</a></li>
-                        <li><a href="index.html#services">Health Consulting</a></li>
-                        <li><a href="index.html#services">Education Planning</a></li>
-                        <li><a href="index.html#services">Financial Security</a></li>
+                        <li><a href="#" onclick="showHomePage(); scrollToSection('services')">Life Insurance</a></li>
+                        <li><a href="#" onclick="showHomePage(); scrollToSection('services')">Health Consulting</a></li>
+                        <li><a href="#" onclick="showHomePage(); scrollToSection('services')">Education Planning</a></li>
+                        <li><a href="#" onclick="showHomePage(); scrollToSection('services')">Financial Security</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-links">
                     <h3>Legal</h3>
                     <ul>
-                        <li><a href="#" id="privacyLink">Privacy Policy</a></li>
-                        <li><a href="#" id="termsLink">Terms & Conditions</a></li>
-                        <li><a href="index.html#contact">Contact Us</a></li>
+                        <li><a href="#" onclick="showPrivacyPolicy()">Privacy Policy</a></li>
+                        <li><a href="#" onclick="showTermsConditions()">Terms & Conditions</a></li>
+                        <li><a href="#" onclick="showHomePage(); scrollToSection('contact')">Contact Us</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="copyright">
                 <p>&copy; <span id="currentYear"></span> Dream Associates. All rights reserved.</p>
-                <p style="margin-top: 10px;">Life, Health and Education Consultant</p>
+                <p style="margin-top: 10px;">Life, Health and Education Consultant | 69 Duraiappa Complex, Gobichettipalayam, Tamil Nadu 638452</p>
             </div>
         </div>
     </footer>
@@ -949,9 +1114,8 @@
             month: 'long', 
             day: 'numeric' 
         });
-        document.querySelectorAll('#currentDate, #currentDate2').forEach(el => {
-            el.textContent = currentDate;
-        });
+        document.getElementById('currentDate').textContent = currentDate;
+        document.getElementById('currentDate2').textContent = currentDate;
         
         // Handle contact form submission
         document.getElementById('contactForm').addEventListener('submit', function(e) {
@@ -960,51 +1124,67 @@
             this.reset();
         });
         
-        // Handle navigation to policy pages
-        document.getElementById('privacyLink').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector('main').style.display = 'none';
-            document.querySelector('footer').style.display = 'none';
-            document.getElementById('privacy-policy').style.display = 'block';
+        // Navigation functions
+        function showHomePage() {
+            document.getElementById('mainContent').style.display = 'block';
+            document.getElementById('privacyPolicyPage').classList.remove('active');
+            document.getElementById('termsPage').classList.remove('active');
+            document.querySelector('footer').style.display = 'block';
+            document.querySelector('header').style.position = 'fixed';
+            window.scrollTo(0, 0);
+            closeMobileMenu();
+        }
+        
+        function showPrivacyPolicy() {
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('privacyPolicyPage').classList.add('active');
+            document.getElementById('termsPage').classList.remove('active');
+            document.querySelector('footer').style.display = 'block';
             document.querySelector('header').style.position = 'relative';
             window.scrollTo(0, 0);
-        });
+            closeMobileMenu();
+        }
         
-        document.getElementById('termsLink').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector('main').style.display = 'none';
-            document.querySelector('footer').style.display = 'none';
-            document.getElementById('terms').style.display = 'block';
+        function showTermsConditions() {
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('privacyPolicyPage').classList.remove('active');
+            document.getElementById('termsPage').classList.add('active');
+            document.querySelector('footer').style.display = 'block';
             document.querySelector('header').style.position = 'relative';
             window.scrollTo(0, 0);
-        });
+            closeMobileMenu();
+        }
         
-        // Handle back to home from policy pages
-        document.querySelectorAll('.back-btn a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector('main').style.display = 'block';
-                document.querySelector('footer').style.display = 'block';
-                document.getElementById('privacy-policy').style.display = 'none';
-                document.getElementById('terms').style.display = 'none';
-                document.querySelector('header').style.position = 'fixed';
-                window.scrollTo(0, 0);
-            });
-        });
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+        
+        function closeMobileMenu() {
+            document.getElementById('mainNav').classList.remove('active');
+        }
         
         // Close mobile menu when clicking a link
         document.querySelectorAll('#mainNav a').forEach(link => {
-            link.addEventListener('click', function() {
-                document.getElementById('mainNav').classList.remove('active');
-            });
+            link.addEventListener('click', closeMobileMenu);
         });
         
         // Check URL hash on page load
         window.addEventListener('load', function() {
-            if (window.location.hash === '#privacy-policy') {
-                document.getElementById('privacyLink').click();
-            } else if (window.location.hash === '#terms') {
-                document.getElementById('termsLink').click();
+            const hash = window.location.hash;
+            if (hash === '#privacy-policy') {
+                showPrivacyPolicy();
+            } else if (hash === '#terms') {
+                showTermsConditions();
             }
         });
     </script>
