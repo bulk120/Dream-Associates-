@@ -391,18 +391,44 @@
         .terms-content {
             max-width: 900px;
             margin: 0 auto;
+            background: white;
+            padding: 50px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
         
         .policy-content h3,
         .terms-content h3 {
             margin-top: 30px;
             color: var(--primary);
+            font-size: 1.5rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light);
         }
         
         .policy-content ul,
         .terms-content ul {
             padding-left: 20px;
             margin-bottom: 20px;
+        }
+        
+        .policy-content ul li,
+        .terms-content ul li {
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+        
+        .back-btn {
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .highlight-box {
+            background-color: var(--light);
+            padding: 20px;
+            border-left: 4px solid var(--accent);
+            margin: 25px 0;
+            border-radius: 0 4px 4px 0;
         }
         
         /* Responsive Styles */
@@ -421,6 +447,11 @@
             
             .about-image {
                 order: -1;
+            }
+            
+            .policy-content,
+            .terms-content {
+                padding: 30px;
             }
         }
         
@@ -472,6 +503,11 @@
             h2 {
                 font-size: 1.8rem;
             }
+            
+            .policy-content,
+            .terms-content {
+                padding: 20px;
+            }
         }
     </style>
 </head>
@@ -492,152 +528,361 @@
             
             <nav>
                 <ul id="mainNav">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                    <li><a href="terms.html">Terms</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a href="#privacy-policy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <h1>Secure Your Future with Confidence</h1>
-            <p>Dream Associates provides trusted guidance in insurance protection, health coverage, financial security, and education planning—focused on clarity, care, and long-term value.</p>
-            <a href="#contact" class="btn btn-accent">Get Free Consultation</a>
-        </div>
-    </section>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <h1>Secure Your Future with Confidence</h1>
+                <p>Dream Associates provides trusted guidance in insurance protection, health coverage, financial security, and education planning—focused on clarity, care, and long-term value.</p>
+                <a href="#contact" class="btn btn-accent">Get Free Consultation</a>
+            </div>
+        </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <h2>About Dream Associates</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>We are a professional Life, Health, and Education Consulting firm dedicated to helping individuals and families plan a secure future. We provide trusted guidance in insurance protection, health coverage, financial security, and education planning—focused on clarity, care, and long-term value.</p>
-                    <p>At Dream Associates, we understand that planning for the future can be complex and overwhelming. Our experienced consultants are here to simplify the process and provide personalized solutions that align with your unique goals and circumstances.</p>
-                    <p>With years of industry experience and a commitment to ethical practice, we've helped hundreds of clients achieve peace of mind and financial security for themselves and their loved ones.</p>
-                    <a href="#contact" class="btn">Contact Us Today</a>
-                </div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1551836026-d5c2c0b4f736?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Dream Associates Team Consultation">
+        <!-- About Section -->
+        <section id="about">
+            <div class="container">
+                <h2>About Dream Associates</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>We are a professional Life, Health, and Education Consulting firm dedicated to helping individuals and families plan a secure future. We provide trusted guidance in insurance protection, health coverage, financial security, and education planning—focused on clarity, care, and long-term value.</p>
+                        <p>At Dream Associates, we understand that planning for the future can be complex and overwhelming. Our experienced consultants are here to simplify the process and provide personalized solutions that align with your unique goals and circumstances.</p>
+                        <p>With years of industry experience and a commitment to ethical practice, we've helped hundreds of clients achieve peace of mind and financial security for themselves and their loved ones.</p>
+                        <a href="#contact" class="btn">Contact Us Today</a>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1551836026-d5c2c0b4f736?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Dream Associates Team Consultation">
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Services Section -->
-    <section id="services" style="background-color: var(--light);">
-        <div class="container">
-            <h2>Our Services</h2>
-            <div class="services-container">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-heartbeat"></i>
-                    </div>
-                    <h3>Health Consulting</h3>
-                    <p>Comprehensive health coverage planning including medical, critical illness, and disability insurance to protect you and your family's wellbeing.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-user-shield"></i>
-                    </div>
-                    <h3>Life Insurance</h3>
-                    <p>Tailored life insurance solutions that provide financial security for your loved ones and help preserve your legacy for future generations.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>Education Planning</h3>
-                    <p>Strategic education funding plans to ensure your children's academic future is secure, regardless of changing economic circumstances.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Financial Security</h3>
-                    <p>Holistic financial planning services that integrate insurance with investment strategies for comprehensive wealth protection and growth.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone-alt"></i>
+        <!-- Services Section -->
+        <section id="services" style="background-color: var(--light);">
+            <div class="container">
+                <h2>Our Services</h2>
+                <div class="services-container">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-heartbeat"></i>
                         </div>
-                        <div>
-                            <h3>Call Us</h3>
-                            <p><a href="tel:7418851898">+91 74188 51898</a></p>
+                        <h3>Health Consulting</h3>
+                        <p>Comprehensive health coverage planning including medical, critical illness, and disability insurance to protect you and your family's wellbeing.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <h3>Life Insurance</h3>
+                        <p>Tailored life insurance solutions that provide financial security for your loved ones and help preserve your legacy for future generations.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Education Planning</h3>
+                        <p>Strategic education funding plans to ensure your children's academic future is secure, regardless of changing economic circumstances.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Financial Security</h3>
+                        <p>Holistic financial planning services that integrate insurance with investment strategies for comprehensive wealth protection and growth.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h3>Call Us</h3>
+                                <p><a href="tel:7418851898">+91 74188 51898</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h3>Email Us</h3>
+                                <p><a href="mailto:dreamassociates84@gmail.com">dreamassociates84@gmail.com</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h3>Business Hours</h3>
+                                <p>Monday - Friday: 9:00 AM - 7:00 PM</p>
+                                <p>Saturday: 10:00 AM - 4:00 PM</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div>
+                                <h3>Consultation</h3>
+                                <p>Free initial consultation for all new clients. Schedule yours today!</p>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h3>Email Us</h3>
-                            <p><a href="mailto:dreamassociates84@gmail.com">dreamassociates84@gmail.com</a></p>
-                        </div>
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <input type="text" placeholder="Your Name" required>
+                            <input type="email" placeholder="Your Email" required>
+                            <input type="tel" placeholder="Your Phone Number">
+                            <select style="width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;">
+                                <option value="" disabled selected>Select Service Interested In</option>
+                                <option value="life">Life Insurance</option>
+                                <option value="health">Health Coverage</option>
+                                <option value="education">Education Planning</option>
+                                <option value="financial">Financial Security</option>
+                                <option value="multiple">Multiple Services</option>
+                            </select>
+                            <textarea placeholder="Your Message" required></textarea>
+                            <button type="submit" class="btn">Send Message</button>
+                        </form>
                     </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div>
-                            <h3>Business Hours</h3>
-                            <p>Monday - Friday: 9:00 AM - 7:00 PM</p>
-                            <p>Saturday: 10:00 AM - 4:00 PM</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-comments"></i>
-                        </div>
-                        <div>
-                            <h3>Consultation</h3>
-                            <p>Free initial consultation for all new clients. Schedule yours today!</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <input type="tel" placeholder="Your Phone Number">
-                        <select style="width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;">
-                            <option value="" disabled selected>Select Service Interested In</option>
-                            <option value="life">Life Insurance</option>
-                            <option value="health">Health Coverage</option>
-                            <option value="education">Education Planning</option>
-                            <option value="financial">Financial Security</option>
-                            <option value="multiple">Multiple Services</option>
-                        </select>
-                        <textarea placeholder="Your Message" required></textarea>
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Privacy Policy Page -->
+        <section id="privacy-policy" style="display: none;">
+            <div class="page-header">
+                <div class="container">
+                    <h1>Privacy Policy</h1>
+                    <p>Last Updated: <span id="currentDate"></span></p>
+                </div>
+            </div>
+            
+            <div class="page-content">
+                <div class="container">
+                    <div class="policy-content">
+                        <p>Dream Associates ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.</p>
+                        
+                        <div class="highlight-box">
+                            <p><strong>Note:</strong> By using our website or services, you consent to the data practices described in this policy. If you do not agree with the terms of this policy, please do not access the site or use our services.</p>
+                        </div>
+                        
+                        <h3>1. Information We Collect</h3>
+                        <p>We collect several types of information from and about users of our website, including:</p>
+                        <ul>
+                            <li><strong>Personal Data:</strong> Personally identifiable information, such as your name, email address, telephone number, and any other information you voluntarily provide when you contact us or use our services.</li>
+                            <li><strong>Financial Information:</strong> Information relevant to our consulting services, which may include income details, financial goals, and insurance needs.</li>
+                            <li><strong>Health Information:</strong> When relevant to insurance and coverage planning, we may collect health-related information necessary for providing appropriate recommendations.</li>
+                            <li><strong>Usage Data:</strong> Information about how you access and use our website, including your IP address, browser type, operating system, pages viewed, and the dates/times of your visits.</li>
+                            <li><strong>Cookies and Tracking Technologies:</strong> We may use cookies, web beacons, and similar tracking technologies to collect information about your browsing activities.</li>
+                        </ul>
+                        
+                        <h3>2. How We Use Your Information</h3>
+                        <p>We use the information we collect for various purposes, including to:</p>
+                        <ul>
+                            <li>Provide, maintain, and improve our services</li>
+                            <li>Respond to your inquiries and provide customer support</li>
+                            <li>Send you administrative information, updates, and service-related communications</li>
+                            <li>Personalize your experience and deliver content relevant to your interests</li>
+                            <li>Monitor and analyze usage patterns and trends</li>
+                            <li>Protect against, identify, and prevent fraud and other illegal activities</li>
+                            <li>Comply with legal obligations and enforce our terms and conditions</li>
+                        </ul>
+                        
+                        <h3>3. Disclosure of Your Information</h3>
+                        <p>We may share your information in the following situations:</p>
+                        <ul>
+                            <li><strong>With Service Providers:</strong> We may share your information with third-party vendors who perform services on our behalf, such as payment processing, data analysis, email delivery, and hosting services.</li>
+                            <li><strong>For Legal Reasons:</strong> We may disclose your information if required to do so by law or in response to valid requests by public authorities.</li>
+                            <li><strong>Business Transfers:</strong> If we are involved in a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction.</li>
+                            <li><strong>With Your Consent:</strong> We may disclose your personal information for any other purpose with your explicit consent.</li>
+                        </ul>
+                        
+                        <h3>4. Data Security</h3>
+                        <p>We implement appropriate technical and organizational security measures designed to protect the security of your personal information. However, please be aware that no security measures are perfect or impenetrable, and we cannot guarantee the absolute security of your data.</p>
+                        
+                        <h3>5. Data Retention</h3>
+                        <p>We will retain your personal information only for as long as is necessary for the purposes set out in this Privacy Policy, or as required to comply with our legal obligations, resolve disputes, and enforce our agreements.</p>
+                        
+                        <h3>6. Your Data Protection Rights</h3>
+                        <p>Depending on your location, you may have the following rights regarding your personal information:</p>
+                        <ul>
+                            <li><strong>Access:</strong> The right to request copies of your personal data.</li>
+                            <li><strong>Rectification:</strong> The right to request correction of inaccurate information.</li>
+                            <li><strong>Erasure:</strong> The right to request deletion of your personal data under certain conditions.</li>
+                            <li><strong>Restriction:</strong> The right to request restriction of processing your personal data.</li>
+                            <li><strong>Objection:</strong> The right to object to our processing of your personal data.</li>
+                            <li><strong>Data Portability:</strong> The right to request transfer of your data to another organization.</li>
+                        </ul>
+                        <p>To exercise these rights, please contact us using the information provided below.</p>
+                        
+                        <h3>7. Third-Party Websites</h3>
+                        <p>Our website may contain links to third-party websites. This Privacy Policy does not apply to those websites, and we are not responsible for their content or privacy practices. We encourage you to review the privacy policies of any third-party sites you visit.</p>
+                        
+                        <h3>8. Children's Privacy</h3>
+                        <p>Our services are not directed to individuals under the age of 18. We do not knowingly collect personal information from children. If you are a parent or guardian and believe your child has provided us with personal information, please contact us immediately.</p>
+                        
+                        <h3>9. Changes to This Privacy Policy</h3>
+                        <p>We may update this Privacy Policy from time to time. The updated version will be indicated by an updated "Last Updated" date at the top of this page. We encourage you to review this Privacy Policy periodically to stay informed about how we are protecting your information.</p>
+                        
+                        <h3>10. Contact Us</h3>
+                        <p>If you have questions or concerns about this Privacy Policy or our data practices, please contact us at:</p>
+                        <p><strong>Dream Associates</strong><br>
+                        Email: dreamassociates84@gmail.com<br>
+                        Phone: +91 74188 51898<br>
+                        Address: Life, Health and Education Consultant</p>
+                        
+                        <div class="back-btn">
+                            <a href="index.html" class="btn">Back to Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Terms and Conditions Page -->
+        <section id="terms" style="display: none;">
+            <div class="page-header">
+                <div class="container">
+                    <h1>Terms and Conditions</h1>
+                    <p>Last Updated: <span id="currentDate2"></span></p>
+                </div>
+            </div>
+            
+            <div class="page-content">
+                <div class="container">
+                    <div class="terms-content">
+                        <p>Welcome to Dream Associates. These Terms and Conditions govern your use of our website and services. By accessing or using our website, you agree to be bound by these Terms and Conditions.</p>
+                        
+                        <div class="highlight-box">
+                            <p><strong>Important:</strong> Please read these Terms and Conditions carefully before using our website or services. If you do not agree to these terms, you must not access or use our website.</p>
+                        </div>
+                        
+                        <h3>1. Definitions</h3>
+                        <p>In these Terms and Conditions:</p>
+                        <ul>
+                            <li>"Company," "We," "Us," or "Our" refers to Dream Associates.</li>
+                            <li>"Client," "You," or "Your" refers to the individual accessing or using our services.</li>
+                            <li>"Services" refers to the life, health, and education consulting services we provide.</li>
+                            <li>"Website" refers to the Dream Associates website, accessible from [Your Website URL].</li>
+                        </ul>
+                        
+                        <h3>2. Services Description</h3>
+                        <p>Dream Associates provides professional consulting services in the areas of:</p>
+                        <ul>
+                            <li>Life insurance planning and advisory</li>
+                            <li>Health coverage consultation</li>
+                            <li>Education funding and planning</li>
+                            <li>Financial security and wealth protection strategies</li>
+                        </ul>
+                        <p>Our services are advisory in nature. We provide recommendations and guidance, but final decisions regarding insurance products, investments, or financial strategies are made by you, the client.</p>
+                        
+                        <h3>3. Client Responsibilities</h3>
+                        <p>By using our services, you agree to:</p>
+                        <ul>
+                            <li>Provide accurate, current, and complete information about yourself and your financial situation</li>
+                            <li>Update your information promptly if any changes occur</li>
+                            <li>Make timely decisions regarding the recommendations provided</li>
+                            <li>Pay for services as agreed in our service agreements</li>
+                            <li>Use our services only for lawful purposes</li>
+                            <li>Not provide false or misleading information</li>
+                        </ul>
+                        
+                        <h3>4. Fees and Payment</h3>
+                        <p>Our fee structure will be clearly explained during our initial consultation. Fees may be charged as:</p>
+                        <ul>
+                            <li><strong>Consultation Fees:</strong> Fixed fees for specific consulting services</li>
+                            <li><strong>Commission-Based Fees:</strong> Commissions received from product providers for policies purchased through our recommendations</li>
+                            <li><strong>Hybrid Model:</strong> Combination of consultation fees and commissions</li>
+                        </ul>
+                        <p>All fees and commissions will be fully disclosed to you before you engage our services.</p>
+                        
+                        <h3>5. Intellectual Property</h3>
+                        <p>The content, layout, design, data, databases, and graphics on this website are protected by intellectual property laws and are owned by Dream Associates unless otherwise stated. You may not reproduce, distribute, modify, or create derivative works of any material without our prior written consent.</p>
+                        
+                        <h3>6. Limitation of Liability</h3>
+                        <p>To the maximum extent permitted by law, Dream Associates shall not be liable for:</p>
+                        <ul>
+                            <li>Any indirect, incidental, special, consequential, or punitive damages</li>
+                            <li>Loss of profits, revenue, data, or use</li>
+                            <li>Damages related to unauthorized access to or alteration of your transmissions or data</li>
+                            <li>Any matters beyond our reasonable control</li>
+                        </ul>
+                        <p>Our total cumulative liability to you for all claims arising from or related to our services shall not exceed the total amount you paid us for the specific service giving rise to the claim.</p>
+                        
+                        <h3>7. Disclaimer of Warranties</h3>
+                        <p>Our services are provided "as is" and "as available" without warranties of any kind, either express or implied. We do not warrant that:</p>
+                        <ul>
+                            <li>Our services will meet your specific requirements</li>
+                            <li>Our services will be uninterrupted, timely, secure, or error-free</li>
+                            <li>The results that may be obtained from the use of our services will be accurate or reliable</li>
+                            <li>The quality of any products, services, information, or other material purchased or obtained through our services will meet your expectations</li>
+                        </ul>
+                        
+                        <h3>8. Confidentiality</h3>
+                        <p>We agree to maintain the confidentiality of all personal and financial information you provide, subject to the following exceptions:</p>
+                        <ul>
+                            <li>When required by law or regulatory authorities</li>
+                            <li>When necessary to provide our services (e.g., sharing with insurance providers)</li>
+                            <li>When you have given explicit consent to share specific information</li>
+                        </ul>
+                        
+                        <h3>9. Termination</h3>
+                        <p>We may terminate or suspend your access to our services immediately, without prior notice or liability, for any reason, including if you breach these Terms and Conditions. Upon termination, your right to use our services will immediately cease.</p>
+                        
+                        <h3>10. Indemnification</h3>
+                        <p>You agree to indemnify, defend, and hold harmless Dream Associates and its officers, directors, employees, and agents from and against any claims, liabilities, damages, losses, and expenses, including reasonable attorneys' fees, arising out of or in any way connected with your access to or use of our services or your violation of these Terms and Conditions.</p>
+                        
+                        <h3>11. Dispute Resolution</h3>
+                        <p>Any disputes arising from these Terms and Conditions or your use of our services shall be resolved through good faith negotiations between the parties. If negotiations fail, the dispute shall be submitted to binding arbitration in accordance with the laws of India.</p>
+                        
+                        <h3>12. Governing Law</h3>
+                        <p>These Terms and Conditions shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law provisions.</p>
+                        
+                        <h3>13. Changes to Terms</h3>
+                        <p>We reserve the right to modify these Terms and Conditions at any time. We will notify you of any changes by updating the "Last Updated" date at the top of this page. Your continued use of our website after any such changes constitutes your acceptance of the new Terms and Conditions.</p>
+                        
+                        <h3>14. Contact Information</h3>
+                        <p>If you have any questions about these Terms and Conditions, please contact us:</p>
+                        <p><strong>Dream Associates</strong><br>
+                        Email: dreamassociates84@gmail.com<br>
+                        Phone: +91 74188 51898</p>
+                        
+                        <div class="back-btn">
+                            <a href="index.html" class="btn">Back to Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer>
@@ -655,29 +900,29 @@
                 <div class="footer-links">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-services">
                     <h3>Our Services</h3>
                     <ul>
-                        <li><a href="#services">Life Insurance</a></li>
-                        <li><a href="#services">Health Consulting</a></li>
-                        <li><a href="#services">Education Planning</a></li>
-                        <li><a href="#services">Financial Security</a></li>
+                        <li><a href="index.html#services">Life Insurance</a></li>
+                        <li><a href="index.html#services">Health Consulting</a></li>
+                        <li><a href="index.html#services">Education Planning</a></li>
+                        <li><a href="index.html#services">Financial Security</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-links">
                     <h3>Legal</h3>
                     <ul>
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms & Conditions</a></li>
-                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#" id="privacyLink">Privacy Policy</a></li>
+                        <li><a href="#" id="termsLink">Terms & Conditions</a></li>
+                        <li><a href="index.html#contact">Contact Us</a></li>
                     </ul>
                 </div>
             </div>
@@ -688,136 +933,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- Privacy Policy Page (hidden by default, shown when linked) -->
-    <div id="privacyPolicyPage" style="display: none;">
-        <div class="page-header">
-            <div class="container">
-                <h1>Privacy Policy</h1>
-                <p>Last Updated: <span id="currentDate"></span></p>
-            </div>
-        </div>
-        
-        <div class="page-content">
-            <div class="container">
-                <div class="policy-content">
-                    <p>At Dream Associates, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy outlines how we collect, use, and safeguard your information when you use our services or interact with our website.</p>
-                    
-                    <h3>Information We Collect</h3>
-                    <p>We may collect the following types of information:</p>
-                    <ul>
-                        <li>Personal identification information (Name, email address, phone number, etc.)</li>
-                        <li>Demographic information (age, gender, location, etc.)</li>
-                        <li>Financial information relevant to our consulting services</li>
-                        <li>Health information relevant to insurance and coverage planning</li>
-                        <li>Website usage data and analytics</li>
-                    </ul>
-                    
-                    <h3>How We Use Your Information</h3>
-                    <p>We use the information we collect for the following purposes:</p>
-                    <ul>
-                        <li>To provide and personalize our consulting services</li>
-                        <li>To communicate with you about our services and updates</li>
-                        <li>To process transactions and send related information</li>
-                        <li>To improve our website and services</li>
-                        <li>To comply with legal obligations</li>
-                    </ul>
-                    
-                    <h3>Information Sharing and Disclosure</h3>
-                    <p>We do not sell, trade, or rent your personal identification information to others. We may share generic aggregated demographic information not linked to any personal identification information regarding visitors and users with our business partners and trusted affiliates for the purposes outlined above.</p>
-                    
-                    <h3>Data Security</h3>
-                    <p>We implement appropriate data collection, storage, and processing practices and security measures to protect against unauthorized access, alteration, disclosure, or destruction of your personal information.</p>
-                    
-                    <h3>Your Rights</h3>
-                    <p>You have the right to:</p>
-                    <ul>
-                        <li>Access the personal information we hold about you</li>
-                        <li>Request correction of inaccurate information</li>
-                        <li>Request deletion of your personal information</li>
-                        <li>Object to processing of your personal information</li>
-                        <li>Request restriction of processing your personal information</li>
-                    </ul>
-                    
-                    <h3>Changes to This Privacy Policy</h3>
-                    <p>Dream Associates has the discretion to update this privacy policy at any time. We encourage you to frequently check this page for any changes. You acknowledge and agree that it is your responsibility to review this privacy policy periodically and become aware of modifications.</p>
-                    
-                    <h3>Contact Us</h3>
-                    <p>If you have any questions about this Privacy Policy, please contact us at:</p>
-                    <p>Dream Associates<br>
-                    Email: dreamassociates84@gmail.com<br>
-                    Phone: +91 74188 51898</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Terms and Conditions Page (hidden by default, shown when linked) -->
-    <div id="termsPage" style="display: none;">
-        <div class="page-header">
-            <div class="container">
-                <h1>Terms and Conditions</h1>
-                <p>Last Updated: <span id="currentDate2"></span></p>
-            </div>
-        </div>
-        
-        <div class="page-content">
-            <div class="container">
-                <div class="terms-content">
-                    <p>Welcome to Dream Associates. These terms and conditions outline the rules and regulations for the use of our website and services.</p>
-                    
-                    <h3>Acceptance of Terms</h3>
-                    <p>By accessing this website and using our services, you accept these terms and conditions in full. Do not continue to use Dream Associates' website or services if you do not accept all of the terms and conditions stated on this page.</p>
-                    
-                    <h3>Services Offered</h3>
-                    <p>Dream Associates provides life, health, and education consulting services. Our services include but are not limited to:</p>
-                    <ul>
-                        <li>Insurance planning and consultation</li>
-                        <li>Health coverage advisory</li>
-                        <li>Education funding planning</li>
-                        <li>Financial security consultation</li>
-                    </ul>
-                    <p>All services are provided by qualified consultants, but we do not guarantee specific outcomes or financial results.</p>
-                    
-                    <h3>Client Responsibilities</h3>
-                    <p>As a client of Dream Associates, you agree to:</p>
-                    <ul>
-                        <li>Provide accurate and complete information relevant to our consultation</li>
-                        <li>Make timely decisions regarding the services offered</li>
-                        <li>Pay for services as agreed in our service agreements</li>
-                        <li>Inform us of any changes to your personal or financial circumstances</li>
-                    </ul>
-                    
-                    <h3>Fees and Payments</h3>
-                    <p>Our fee structure will be explained during the initial consultation and detailed in our service agreement. Some services may be offered on a commission basis from product providers, which will be fully disclosed to you.</p>
-                    
-                    <h3>Intellectual Property Rights</h3>
-                    <p>Unless otherwise stated, Dream Associates and/or its licensors own the intellectual property rights for all material on this website. All intellectual property rights are reserved.</p>
-                    
-                    <h3>Limitation of Liability</h3>
-                    <p>To the maximum extent permitted by applicable law, we exclude all representations, warranties, and conditions relating to our website and the use of this website and our services. Dream Associates will not be liable for any direct, indirect, or consequential loss or damage arising under these terms and conditions or in connection with our website or services.</p>
-                    
-                    <h3>Indemnification</h3>
-                    <p>You hereby indemnify Dream Associates and undertake to keep Dream Associates indemnified against any losses, damages, costs, liabilities, and expenses incurred or suffered by Dream Associates arising out of any breach by you of any provision of these terms and conditions.</p>
-                    
-                    <h3>Termination</h3>
-                    <p>We may terminate or suspend access to our services immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the terms and conditions.</p>
-                    
-                    <h3>Governing Law</h3>
-                    <p>These terms and conditions are governed by and construed in accordance with the laws of India, and you irrevocably submit to the exclusive jurisdiction of the courts in that location.</p>
-                    
-                    <h3>Changes to Terms</h3>
-                    <p>Dream Associates reserves the right to revise these terms and conditions at any time as it sees fit. By using this website and our services, you are expected to review these terms regularly.</p>
-                    
-                    <h3>Contact Information</h3>
-                    <p>If you have any questions about these Terms and Conditions, please contact us at:</p>
-                    <p>Dream Associates<br>
-                    Email: dreamassociates84@gmail.com<br>
-                    Phone: +91 74188 51898</p>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script>
         // Mobile menu toggle
@@ -845,28 +960,52 @@
             this.reset();
         });
         
-        // Handle navigation to policy pages (simulated for this example)
-        // In a real implementation, these would be separate pages
-        const urlParams = new URLSearchParams(window.location.search);
-        const page = urlParams.get('page');
+        // Handle navigation to policy pages
+        document.getElementById('privacyLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('main').style.display = 'none';
+            document.querySelector('footer').style.display = 'none';
+            document.getElementById('privacy-policy').style.display = 'block';
+            document.querySelector('header').style.position = 'relative';
+            window.scrollTo(0, 0);
+        });
         
-        if (page === 'privacy-policy') {
+        document.getElementById('termsLink').addEventListener('click', function(e) {
+            e.preventDefault();
             document.querySelector('main').style.display = 'none';
             document.querySelector('footer').style.display = 'none';
-            document.getElementById('privacyPolicyPage').style.display = 'block';
+            document.getElementById('terms').style.display = 'block';
             document.querySelector('header').style.position = 'relative';
-        } else if (page === 'terms') {
-            document.querySelector('main').style.display = 'none';
-            document.querySelector('footer').style.display = 'none';
-            document.getElementById('termsPage').style.display = 'block';
-            document.querySelector('header').style.position = 'relative';
-        }
+            window.scrollTo(0, 0);
+        });
+        
+        // Handle back to home from policy pages
+        document.querySelectorAll('.back-btn a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector('main').style.display = 'block';
+                document.querySelector('footer').style.display = 'block';
+                document.getElementById('privacy-policy').style.display = 'none';
+                document.getElementById('terms').style.display = 'none';
+                document.querySelector('header').style.position = 'fixed';
+                window.scrollTo(0, 0);
+            });
+        });
         
         // Close mobile menu when clicking a link
         document.querySelectorAll('#mainNav a').forEach(link => {
             link.addEventListener('click', function() {
                 document.getElementById('mainNav').classList.remove('active');
             });
+        });
+        
+        // Check URL hash on page load
+        window.addEventListener('load', function() {
+            if (window.location.hash === '#privacy-policy') {
+                document.getElementById('privacyLink').click();
+            } else if (window.location.hash === '#terms') {
+                document.getElementById('termsLink').click();
+            }
         });
     </script>
 </body>
